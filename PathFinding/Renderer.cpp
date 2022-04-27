@@ -9,7 +9,7 @@ namespace Renderer {
 void RenderMap(std::vector<std::vector<int>> map,
                std::pair<int, int> map_dimension, std::pair<int, int> start_pos,
                std::vector<std::vector<int>> visited,
-               std::string directionPointer, bool debug) {
+               std::string& directionPointer, bool debug) {
 
   // This Formula is need to make a fast renderer using just one loop.
   // Formula = row_size * i + j = N
@@ -18,8 +18,9 @@ void RenderMap(std::vector<std::vector<int>> map,
   int N = row_size * col_size;
   int row = 0;
   int col, value;
-
+ 
   std::string map_render = "";
+
   for (int n = 0; n < N; n++) {
     // Determinging the row number and increasing it if it is reached
     if (n % row_size == 0 && n != 0) {
@@ -57,7 +58,7 @@ void RenderMap(std::vector<std::vector<int>> map,
   if (debug) {
     Debug(visited, start_pos);
   }else{
-    std::this_thread::sleep_for(std::chrono::milliseconds(20));
+    std::this_thread::sleep_for(std::chrono::milliseconds(50));
     system("cls");
   }
 }
